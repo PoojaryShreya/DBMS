@@ -1,0 +1,6 @@
+create table st(usn integer primary key, name varchar(20), phno integer,secton varchar(3));
+insert into st values(11,'rhea',98765,'CS');
+insert into st values(13,'roy',12345,'IS');
+insert into st values(15,'jazz',10976,'EC');
+insert into st values(14,'mahi',23498,'IS');
+insert into st values(12,'osha',34566,'CS');
