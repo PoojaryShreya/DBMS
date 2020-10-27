@@ -1,0 +1,18 @@
+select * from BOOK,BOOK_AUTHOR where BOOK.book_id=BOOK_AUTHOR.book_id;
+
+book_id	title	publisher_name	pub_year	book_id	author_name
+10	    DBMS	Mcgraw	        2010	    10	    Andrew
+20	    SE	  Person	        2008	    20	    Raj Kumar
+30	    FLAT  SAM Pub	        2019	    30	    Samual
+40	    BDA 	IOP	            2018	    40	    Padma
+50	    MP	  IEEE	          2020	    50	    Guru
+
+select title from BOOK where book_id=20;
+
+title
+SE
+
+select book_id from BOOK where publisher_name='IEEE';
+
+book_id
+50
