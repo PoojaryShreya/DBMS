@@ -1,5 +1,6 @@
 select B.book_id,title,publisher_name,author_name,branch_id from BOOK B,BOOK_AUTHOR BA,Book_Copies BC where B.book_id=BA.book_id and BC.book_id=B.book_id;
 select card_no from Book_Lending where date_out between '2016-12-31' and '2017-07-01' group by card_no having count(card_no)>3;
+select B.book_id,title,publisher_name,author_name,branch_id from BOOK B,BOOK_AUTHOR BA,Book_Copies BC where B.book_id=BA.book_id and BC.book_id=B.book_id;
 
 
 book_id	title	publisher_name	author_name	branch_id
@@ -11,3 +12,9 @@ book_id	title	publisher_name	author_name	branch_id
 
 
 
+book_id 	title 	publisher_name 	author_name 	branch_id
+10 	      DBMS 	  Mcgraw 	        Andrew 	      100
+10 	      DBMS 	  Mcgraw 	        Andrew 	      200
+20 	      SE 	    Person 	        Raj Kumar 	  300
+30 	      FLAT 	  SAM Pub 	      Samual 	      100
+40 	      BDA 	  IOP 	          Padma 	      500      
