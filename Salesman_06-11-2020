@@ -1,0 +1,3 @@
+create table SALESMAN(salesman_id integer(10) primary key, name varchar(20), city varchar(30), Commission varchar(20));
+create table CUSTOMER(customer_id integer(10),cust_name varchar(20), city varchar(30), grade varchar(3),salesman_id integer(10),primary key(customer_id,salesman_id) , foreign key(salesman_id) references SALESMAN(salesman_id));
+create table ORDERS(ord_no integer(10) primary key,purchase_amt integer,ord_date integer,customer_id integer(10),salesman_id integer(10),foreign key(customer_id) references CUSTOMER(customer_id), foreign key(salesman_id) references SALESMAN(salesman_id));
