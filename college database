@@ -12,7 +12,8 @@ insert into SEMSEC values(45678,4,"C");
 insert into SEMSEC values(34567,7,"A");
 insert into SEMSEC values(23456,4,"C");
 insert into SEMSEC values(12345,8,"C");                                                                         
-create table CLASS(usn varchar(10),ssid integer(10), primary key(usn,ssid),foreign key(usn) references STUDENT(usn),foreign key(ssid) references SEMSEC(ssid));
+create table CLASS(usn varchar(10),ssid integer(10), primary key(usn,ssid),foreign key(usn) references STUDENT(usn),
+foreign key(ssid) references SEMSEC(ssid));
 insert into CLASS values("1bi16cs110",34567);
 insert into CLASS values("1bi15ec201",67890);
 insert into CLASS values("1bi17cv601",12345);
