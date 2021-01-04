@@ -47,3 +47,27 @@ harry potter
 mov_title
 street dancer
 Uturn
+
+3>select a.act_name,c.mov_title,c.mov_year from ACTOR a,MOVIES_CAST mc,MOVIES c where
+a.act_id=mc.act_id and mc.mov_id=c.mov_id and c.mov_year not between 2000 and 2015;
+
+act_name	     mov_title	    mov_year
+rohan shetty	 bhootnath	    2018
+gagan tiwari	 street dancer	2017
+
+4>select mov_title, rev_stars from RATING r,MOVIES m where r.mov_id=m.mov_id and rev_stars in
+(select max(rev_stars)from RATING order by mov_title);
+
+mov_title	 rev_stars
+Uturn	     5
+
+5>update RATING set rev_stars=5 where mov_id in(select mov_id from MOVIES m,DIRECTOR d
+where m.dir_id=d.dir_id and dir_name='stephen spielberg');
+select * from RATING;
+
+mov_id	 rev_stars
+301	     3
+302	     5
+303	     4
+304	     4
+305	     5
