@@ -23,18 +23,18 @@ insert into MOVIES values('305','Uturn',2015,'kannada','111');
 create table MOVIES_CAST (act_id varchar(10),mov_id varchar(10),role 
 varchar(10),primary key(act_id,mov_id),foreign key(mov_id)references MOVIES(mov_id),foreign key(act_id)references 
 ACTOR(act_id));
-insert into MOVIES_CAST values('104','301',"heroein"); 
+insert into MOVIES_CAST values('105','302',"heroein"); 
 insert into MOVIES_CAST values('103','304',"hero"); 
-insert into MOVIES_CAST values('105','302',"villian"); 
 insert into MOVIES_CAST values('102','305',"villian"); 
-insert into MOVIES_CAST values('101','303',"hero");  
+insert into MOVIES_CAST values('104','305',"student");  
+insert into MOVIES_CAST values('101','304',"boss");  
 create table RATING (mov_id varchar(10) primary key,rev_stars 
 integer,foreign key(mov_id)references MOVIES(mov_id));  
 insert into RATING values('304',4);
 insert into RATING values('302',2);
 insert into RATING values('301',3);
 insert into RATING values('303',4);
-insert into RATING values('305',5);                                             
+insert into RATING values('305',5);  
 
 1>select mov_title from MOVIES m, DIRECTOR d where m.dir_id=d.dir_id and d.dir_name='hitchcook';
 
@@ -51,11 +51,13 @@ Uturn
 3>select a.act_name,c.mov_title,c.mov_year from ACTOR a,MOVIES_CAST mc,MOVIES c where
 a.act_id=mc.act_id and mc.mov_id=c.mov_id and c.mov_year not between 2000 and 2015;
 
-act_name	     mov_title	    mov_year
-rohan shetty	 bhootnath	    2018
-gagan tiwari	 street dancer	2017
+act_name	     mov_title	     mov_year
+rohan shetty	 bhootnath	     2018
+dishan sharma	 street dancer	 2017
+gagan tiwari	 street dancer	 2017
 
-4>select mov_title, rev_stars from RATING r,MOVIES m where r.mov_id=m.mov_id and rev_stars in
+
+select mov_title,rev_stars from RATING r, MOVIES m where r.mov_id=m.mov_id and rev_stars in
 (select max(rev_stars)from RATING order by mov_title);
 
 mov_title	 rev_stars
@@ -64,10 +66,8 @@ Uturn	     5
 5>update RATING set rev_stars=5 where mov_id in(select mov_id from MOVIES m,DIRECTOR d
 where m.dir_id=d.dir_id and dir_name='stephen spielberg');
 select * from RATING;
-
-mov_id	 rev_stars
-301	     3
-302	     5
-303	     4
-304	     4
-305	     5
+mov_id	rev_stars
+301	    3
+302	    2
+303	    4
+304	    4
