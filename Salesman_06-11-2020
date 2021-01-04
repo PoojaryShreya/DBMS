@@ -1,3 +1,44 @@
 create table SALESMAN(salesman_id integer(10) primary key, name varchar(20), city varchar(30), Commission varchar(20));
-create table CUSTOMER(customer_id integer(10),cust_name varchar(20), city varchar(30), grade varchar(3),salesman_id integer(10),primary key(customer_id,salesman_id) , foreign key(salesman_id) references SALESMAN(salesman_id));
-create table ORDERS(ord_no integer(10) primary key,purchase_amt integer,ord_date integer,customer_id integer(10),salesman_id integer(10),foreign key(customer_id) references CUSTOMER(customer_id), foreign key(salesman_id) references SALESMAN(salesman_id));
+create table CUSTOMER(customer_id integer(10),cust_name varchar(20), city varchar(30), grade varchar(3),
+     salesman_id integer(10),primary key(customer_id,salesman_id) , foreign key(salesman_id) references SALESMAN(salesman_id));
+create table ORDERS(ord_no integer(10) primary key,purchase_amt integer,ord_date date,customer_id integer(10),salesman_id integer(10),
+     foreign key(customer_id) references CUSTOMER(customer_id), foreign key(salesman_id) references SALESMAN(salesman_id));
+insert into SALESMAN values(10,'akash','mangalore',2);
+insert into SALESMAN values(20,'ram','bangalore',2);
+insert into SALESMAN values(30,'raj','mangalore',2);
+insert into SALESMAN values(40,'kiran','mysore',2);
+insert into SALESMAN values(50,'shreya','bangalore',3);
+insert into CUSTOMER values(1000,'avinash','mangalore',100,10);
+insert into CUSTOMER values(2000,'kumar','bangalore',200,20);
+insert into CUSTOMER values(3000,'preeti','mysore',300,40);
+insert into CUSTOMER values(4000,'smitha','mangalore',400,30);
+insert into CUSTOMER values(5000,'varshini','bangalore',400,10);
+insert into ORDERS values(551,5000,'2020-01-04',1000,10);
+insert into ORDERS values(552,2500,'2020-02-05',2000,20);
+insert into ORDERS values(553,500,'2020-03-03',3000,40);
+insert into ORDERS values(554,1500,'2020-04-02',4000,30);
+update CUSTOMER set grade=400 where customer_id=1000;
+update CUSTOMER set grade=300 where customer_id=4000;
+update CUSTOMER set city='udupi' where customer_id=2000;
+update CUSTOMER set city='mysore' where customer_id=5000;
+
+
+1>select grade, count(*) from CUSTOMER where grade >(select avg(grade) from CUSTOMER where city='bangalore') group by grade;
+
+grade	 count(*)
+400	   2
+
+2>select salesman_id,name from SALESMAN s where 1<(select count(*) from ORDERS o where s.salesman_id=o.salesman_id);
+
+salesman_id	 name
+10	         akash
+
+3>select * from SALESMAN where salesman_id in(select salesman_id from SALESMAN s where exists(select * from CUSTOMER c where s.salesman_id=c.salesman_id) union
+select salesman_id from SALESMAN s where not exists(select * from CUSTOMER c where s.salesman_id=c.salesman_id));
+
+salesman_id  name	   city	       Commission
+10	         akash	 mangalore	 4
+20	         ram	   bangalore	 2
+30	         raj	   mangalore	 2
+40	         kiran	 mysore	     2
+50	         shreya	 bangalore	 3
