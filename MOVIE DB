@@ -35,3 +35,15 @@ insert into RATING values('302',2);
 insert into RATING values('301',3);
 insert into RATING values('303',4);
 insert into RATING values('305',5);                                             
+
+1>select mov_title from MOVIES m, DIRECTOR d where m.dir_id=d.dir_id and d.dir_name='hitchcook';
+
+mov_title
+harry potter
+
+2>select mov_title from MOVIES m,MOVIES_CAST mc where m.mov_id=mc.mov_id and act_id in
+(select act_id from MOVIES_CAST group by act_id having count(*)>1); 
+
+mov_title
+street dancer
+Uturn
