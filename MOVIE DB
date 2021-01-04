@@ -16,7 +16,7 @@ insert into DIRECTOR values('555','neha joshi','1846384276' );
 create table MOVIES (mov_id varchar(10) primary key,mov_title varchar
 (20),mov_year integer,mov_lang varchar(20),dir_id varchar(10),foreign key(dir_id)references DIRECTOR(dir_id));
 insert into MOVIES values('301','harry potter',2009,'english','222'); 
-insert into MOVIES values('302','bhootnath',2004,'hindi','444');
+insert into MOVIES values('302','bhootnath',2018,'hindi','444');
 insert into MOVIES values('303','the incredible',2010,'english','555');
 insert into MOVIES values('304','street dancer',2017,'hindi','333');
 insert into MOVIES values('305','Uturn',2015,'kannada','111');
