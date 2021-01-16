@@ -51,4 +51,9 @@ output:
 sum(salary)	 max(salary)	min(salary)	 avg(salary)
 180000	     95000	      85000	       90000.0000
 
-4>
+5>select dno,count(ssn) from EMPLOYEE where salary>600000 and dno in
+(select dno from EMPLOYEE group by dno having count(ssn)>5) group by dno;
+
+output:
+dno	  count(ssn)
+4   	3
